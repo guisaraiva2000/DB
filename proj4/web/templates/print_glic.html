@@ -1,0 +1,30 @@
+<doctype html>
+<title>App BD - Flask</title>
+<body style="padding:20px">
+  {% if cursor%}
+    <table border="2px">
+      <p>Lista de Concelhos por niveis de Glicemia</p>
+      <thead>
+        <tr>
+          <th>num_concelho</th>
+          <th>max_glicemia</th>
+          <th>max_doente</th>
+          <th>min_glicemia</th>
+          <th>min_doente</th>
+        <tr>
+      </thead>
+      <tbody>
+        {% for record in cursor %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</body>
+</doctype>

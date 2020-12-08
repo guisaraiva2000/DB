@@ -1,0 +1,22 @@
+<doctype html>
+<title>App BD - Flask</title>
+<body style="padding:20px">
+  {% if cursor%}
+    <table border="2px">
+      <p>Lista de Substancias prescritas pelo Medico {{ num_cedula }} no Mes {{ mes }}</p>
+      <thead>
+        <tr>
+          <th>Substancias</th>
+        <tr>
+      </thead>
+      <tbody>
+        {% for record in cursor %}
+          <tr>
+            <td>{{ record[0] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</body>
+</doctype>

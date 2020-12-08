@@ -1,0 +1,168 @@
+<doctype html>
+<title>App BD - Flask</title>
+<body style="padding:20px">
+
+  <p style="font-size:22px">><a href="insert_venda">Realizar uma venda em farmacia</a></p>
+
+  <p style="font-size:22px">><a href="list_subst">Listar substancias</a></p>
+
+  <p style="font-size:22px">><a href="print_glic">Listar Concelhos por niveis de Glicemia</a></p>
+
+  {% if cursor1%}
+    <table border="2px">
+      <caption>Instituicoes</caption>
+      <thead>
+        <tr>
+          <th>nome</th>
+          <th>tipo</th>
+          <th>num_regiao</th>
+          <th>num_concelho</th>
+          <th>Inserir</th>
+          <th>Editar</th>
+          <th>Remover</th>
+        <tr>
+      </thead>
+      <tbody>
+        {% for record in cursor1 %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td><a href="insert_instituicao">Inserir Inst.</a></td>
+            <td><a href="alter_instituicao?nome={{ record[0] }}">Editar</a></td>
+            <td>
+              <form action="remove_instituicao" method="post">
+                <p><input type="hidden" name="nome" value="{{ record[0] }}"/></p>
+                <p><input type="submit" value="Remover Inst."/></p>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  {% if cursor2  %}
+    <br/>
+    <br/>
+    <table border="2px">
+      <caption>Medicos</caption>
+      <thead>
+        <tr>
+          <th>num_cedula</th>
+          <th>nome</th>
+          <th>especialidade</th>
+          <th>Inserir</th>
+          <th>Editar</th>
+          <th>Remover</th>
+        <tr>
+      </thead>
+      <tbody>
+        {% for record in cursor2 %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td><a href="insert_medico">Inserir Medico</a></td>
+            <td><a href="alter_medico?num_cedula={{ record[0] }}">Editar</a></td>
+            <td>
+              <form action="remove_medico" method="post">
+                <p><input type="hidden" name="num_cedula" value="{{ record[0] }}"/></p>
+                <p><input type="submit" value="Remover Medico"/></p>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+  {% endif %}
+
+  {% if cursor3  %}
+    <br/>
+    <br/>
+    <table border="2px">
+      <caption>Prescricoes</caption>
+      <thead>
+        <tr>
+          <th>num_cedula</th>
+          <th>num_doente</th>
+          <th>data</th>
+          <th>substancia</th>
+          <th>quant</th>
+          <th>Inserir</th>
+          <th>Editar</th>
+          <th>Remover</th>
+        <tr>
+      </thead>
+      <tbody>
+        {% for record in cursor3 %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td><a href="insert_prescricao">Inserir Presc.</a></td>
+            <td><a href="alter_prescricao?num_cedula={{ record[0] }}&num_doente={{ record[1] }}&data={{ record[2] }}&substancia={{ record[3] }}">Editar</a></td>
+            <td>
+              <form action="remove_prescricao" method="post">
+                <p><input type="hidden" name="num_cedula" value="{{ record[0] }}"/></p>
+                <p><input type="hidden" name="num_doente" value="{{ record[1] }}"/></p>
+                <p><input type="hidden" name="data" value="{{ record[2] }}"/></p>
+                <p><input type="hidden" name="substancia" value="{{ record[3] }}"/></p>
+                <p><input type="submit" value="Remover Presc."/></p>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+  {% endif %}
+
+  {% if cursor4  %}
+    <br/>
+    <br/>
+    <table border="2px">
+      <caption>Analises</caption>
+      <thead>
+        <tr>
+          <th>num_analise</th>
+          <th>especialidade</th>
+          <th>num_cedula</th>
+          <th>num_doente</th>
+          <th>data</th>
+          <th>data_registo</th>
+          <th>nome</th>
+          <th>quant</th>
+          <th>inst</th>
+          <th>Inserir</th>
+          <th>Editar</th>
+          <th>Remover</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in cursor4 %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+            <td>{{ record[7] }}</td>
+            <td>{{ record[8] }}</td>
+            <td><a href="insert_analise">Inserir Analise</a></td>
+            <td><a href="alter_analise?num_analise={{ record[0] }}">Editar</a></td>
+            <td>
+              <form action="remove_analise" method="post">
+                <p><input type="hidden" name="num_analise" value="{{ record[0] }}"/></p>
+                <p><input type="submit" value="Remover Analise"/></p>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+  {% endif %}
+
+</body>
+</doctype>
